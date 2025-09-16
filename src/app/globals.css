@@ -8,7 +8,6 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   
-  /* Custom theme variables */
   --color-bg-primary: #ffffff;
   --color-bg-secondary: #f3f4f6;
   --color-bg-tertiary: white;
@@ -24,7 +23,6 @@
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
   
-  /* Custom theme variables */
   --color-bg-primary: #111827;
   --color-bg-secondary: #1f2937;
   --color-bg-tertiary: #464d58;
@@ -40,7 +38,6 @@ body {
   background-color: var(--color-bg-primary);
 }
 
-/* Apply custom theme variables */
 .bg-custom-primary {
   background-color: var(--color-bg-primary);
 }
@@ -69,7 +66,6 @@ body {
   background-color: var(--color-button-bg);
 }
 
-/* Hover states for custom classes */
 .hover\:bg-custom-tertiary:hover {
   background-color: var(--color-bg-tertiary);
 }
@@ -78,7 +74,6 @@ body {
   background-color: var(--color-button-hover);
 }
 
-/* Add transition for smooth hover effects */
 .nav-button {
   transition: background-color 0.2s ease;
 }

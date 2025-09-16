@@ -1,4 +1,3 @@
-// context/ThemeContext.tsx
 "use client";
 import {
   createContext,
@@ -21,7 +20,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
-    // Get theme from localStorage or system preference
     const savedTheme = localStorage.getItem("theme");
     const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
       .matches
@@ -32,12 +30,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!mounted) return;
-
-    // Update document attribute and localStorage
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
-
-    // Also add/remove dark class for Tailwind
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
@@ -50,8 +44,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   };
 
   if (!mounted) {
-    // FIXED: Remove the semicolon and properly return JSX
-    return <div className="bg-white dark:bg-gray-950">{children}</div>;
+    return; <div className="bg-white dark:bg-gray-950">{children}</div>;
   }
 
   return (
