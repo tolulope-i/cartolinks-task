@@ -76,12 +76,14 @@ export default function HeroSlider() {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [cardWidth, setCardWidth] = useState(700);
-  const gap = 24; 
+  const gap = 24;
 
   useEffect(() => {
     const update = () => {
-      const w = cardRef.current?.offsetWidth ?? 700;
-      setCardWidth(w + gap);
+      if (cardRef.current) {
+        const w = cardRef.current.offsetWidth;
+        setCardWidth(w + gap);
+      }
     };
     update();
     window.addEventListener("resize", update);
@@ -96,7 +98,10 @@ export default function HeroSlider() {
     return () => clearInterval(t);
   }, [isHovered]);
 
-  function handleDragEnd(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
+  function handleDragEnd(
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) {
     const offset = info.offset.x;
     if (offset < -80) {
       setIndex((i) => Math.min(slides.length - 1, i + 1));
@@ -115,7 +120,6 @@ export default function HeroSlider() {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          
           <motion.div
             ref={trackRef}
             drag="x"
@@ -134,7 +138,7 @@ export default function HeroSlider() {
               <div
                 ref={i === 0 ? cardRef : null}
                 key={i}
-                className="min-w-[700px] max-w-[700px] h-[380px] rounded-xl shadow-2xl overflow-hidden relative bg-center bg-cover"
+                className="min-w-full sm:min-w-[600px] md:min-w-[700px] h-[300px] sm:h-[380px] rounded-xl shadow-2xl overflow-hidden relative bg-center bg-cover"
                 style={{
                   backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0.15)), url(${s.image})`,
                 }}
@@ -146,14 +150,15 @@ export default function HeroSlider() {
 
                 {/* content */}
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-4xl font-extrabold text-white leading-tight drop-shadow-lg">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight drop-shadow-lg">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-sm text-white/90 max-w-[70%]">
+                  <p className="mt-2 text-xs sm:text-sm md:text-base text-white/90 max-w-full sm:max-w-[80%]">
                     {s.caption}
                   </p>
+
                   <div className="mt-4">
-                    <button className="inline-block bg-white text-black px-4 py-2 rounded-full shadow">
+                    <button className="inline-block bg-white text-black px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm md:text-base rounded-full shadow">
                       {s.button}
                     </button>
                   </div>
