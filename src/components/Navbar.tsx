@@ -10,6 +10,7 @@ import { GiMeditation } from "react-icons/gi";
 import { FaAngleDown } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
@@ -18,7 +19,7 @@ export default function Navbar() {
         {/* left logo */}
         <div className="flex items-center gap-3">
           <div>
-            <img src="kr.png" alt="krea logo" className="w-10 h-10" />
+            <Image src="/kr.png" alt="Logo" width={50} height={50} />
           </div>
           <div className="text-sm flex justify-center items-center gap-1">
             <span className="h-4 w-4 rounded-3xl bg-radial from-blue-200 via-purple-200 to-pink-300"></span>

@@ -1,5 +1,5 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, PanInfo } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 type Slide = {
@@ -96,7 +96,7 @@ export default function HeroSlider() {
     return () => clearInterval(t);
   }, [isHovered]);
 
-  function handleDragEnd(e: any, info: any) {
+  function handleDragEnd(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
     const offset = info.offset.x;
     if (offset < -80) {
       setIndex((i) => Math.min(slides.length - 1, i + 1));
